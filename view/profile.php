@@ -2,6 +2,10 @@
 	session_start();
 	if (!isset($_SESSION['login']))
 		 header('Location: /');
+	 
+	 $path = "../json/".$_SESSION['login'].".json";
+	 $string = file_get_contents($path);
+	 $data = json_decode($string);
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +18,9 @@
 
 	<body>
 		<div align = "center">
-			<p>Логин: <?php  echo $_SESSION['login'];?></p>
-			<p>Имя: <?php echo $_SESSION['name']; ?></p>
-			<p>Фамилия: <?php echo $_SESSION['surname']; ?></p>
+			<p>Логин: <?php  echo $data->login; ?></p>
+			<p>Имя: <?php echo $data->name; ?></p>
+			<p>Фамилия: <?php echo $data->surname; ?></p>
 			<a href = "edit.php">Редактировать профиль</a>
 			<?php include("blocks/exit_button.php"); ?>
 		</div>

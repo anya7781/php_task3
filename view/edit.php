@@ -3,6 +3,10 @@
 	session_start();
 	if (!isset($_SESSION['login']))
 		 header('Location: /');
+	 
+	 $path = "../json/".$_SESSION['login'].".json";
+	 $string = file_get_contents($path);
+	 $data = json_decode($string);
 
 ?>
 
@@ -20,9 +24,9 @@
 			<label>Логин: </label>
 			<p><input type = "text" name = "login" value = "<?php echo $_SESSION['login']; ?>"/></p>
 			<label>Имя: </label>
-			<p><input type = "text" name = "name" value = "<?php echo $_SESSION['name']; ?>"/></p>
+			<p><input type = "text" name = "name" value = "<?php echo $data->name; ?>"/></p>
 			<label>Фамилия: </label>
-			<p><input type = "text" name = "surname" value = "<?php echo $_SESSION['surname']; ?>"/></p>
+			<p><input type = "text" name = "surname" value = "<?php echo $data->surname; ?>"/></p>
 			
 			<p><input type = "submit" value = "Сохранить"></p>
 			
