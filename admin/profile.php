@@ -23,6 +23,7 @@
 			<p>Имя: <?php echo $data->name; ?></p>
 			<p>Фамилия: <?php echo $data->surname; ?></p>
 			<a href = "list.php">Список пользователей</a>
+			<?php include("blocks/exit_button.php"); ?>
 		</div>
 	</body>
 

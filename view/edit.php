@@ -31,10 +31,7 @@
 			<p><input type = "submit" value = "Сохранить"></p>
 			
 		</form>
-		
-		<?php include("blocks/exit_button.php"); ?>
-			
-				
+						
 	
 	</body>
 

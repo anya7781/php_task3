@@ -47,8 +47,10 @@
 					?>
 				</div>
 		</div>
-		<a href = "/admin/new_user.php" align = "center"> Добавить пользователя </a>
-	
+		<div align = "center">
+			<br><a href = "/admin/new_user.php"> Добавить пользователя </a>
+		</div>
+		<?php include("blocks/exit_button.php"); ?>
 	</body>
 
 
