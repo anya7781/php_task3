@@ -33,7 +33,7 @@
 					<?php
 						echo "<b>Логин</b><br>";
 						for ($i = 0; $i < count($logins); $i++){
-								echo $logins[$i]."<br>";
+								echo "<a href = 'profile.php?login=$logins[$i]'>".$logins[$i]."</a><br>";
 							}
 					?>
 				</div>
@@ -47,6 +47,7 @@
 					?>
 				</div>
 		</div>
+		<a href = "/admin/new_user.php" align = "center"> Добавить пользователя </a>
 	
 	</body>
 
