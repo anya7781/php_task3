@@ -4,3 +4,21 @@
 .exit_button{
 	margin-top: 10px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  justify-content: center;
+}
+
+.grid-item1 {
+	background-color: #BCFFB5;
+}
+
+.grid-item2 {
+	background-color: #FFD769;
+}
+
+.grid-item {
+	padding: 10px;
+}
