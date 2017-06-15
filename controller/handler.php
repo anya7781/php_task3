@@ -1,5 +1,9 @@
 <?php
+
 			session_start();
+
+			require "/model/User.php";
+            require "/model/Auth.php";
 			
 			if (isset($_POST['exit'])){
 				session_destroy();
@@ -18,7 +22,8 @@
 					$string = file_get_contents($path);
 					$data = json_decode($string);
 					if ($password == $data->password){
-						$_SESSION['login'] = $login;
+                        $current_user = new User;
+						Auth::setObj($current_user);
 						header('Location: /view/message.php');
 					}
 					else echo "Incorrect password";
