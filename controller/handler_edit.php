@@ -1,29 +1,27 @@
 <?php
-			session_start();
+		require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
+		
+		$obj = Auth::getObj();
 			
-			
-			if (!isset($_SESSION['login'])){
-				header('Location: /');
-			}
-			else {
-				 $path = "../json/".$_SESSION['login'].".json";
-				 $string = file_get_contents($path);
-				 $data = json_decode($string);
+		$login = $obj->getLogin();
+		$data = Files::getUser($login);
 				 
-				if (isset($_POST['login'])){
-					$_SESSION['login'] = $_POST['login'];
-					$data->login = $_POST['login'];
-				}
-				if (isset($_POST['name'])){
-					$data->name = $_POST['name'];
-				}
-				if (isset($_POST['surname'])){
-					$data->surname = $_POST['surname'];
-				}
+		if (isset($_POST['login'])){
+			$data->login = $_POST['login'];
+			$obj->setLogin($data->login);
+		}
+		if (isset($_POST['name'])){
+			$data->name = $_POST['name'];
+			$obj->setName($data->name);
+		}
+		if (isset($_POST['surname'])){
+			$data->surname = $_POST['surname'];
+			$obj->setSurname($data->surname);
+		}
+		
+		Files::setUser($data, $login);
 				
-				file_put_contents($path, json_encode($data));
-				
-				header('Location: /view/profile.php');
-			}
+		header('Location: /view/profile.php');
+			
 			
  

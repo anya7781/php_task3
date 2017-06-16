@@ -1,13 +1,23 @@
 <?php
-
+	session_start();
 class Auth {
-    private static $obj = 0;
 
-    public static function setObj($obj){
-       self::$obj = $obj;
+    public static function setObj($current_user){
+      
+		$_SESSION['object'] = $current_user;
+		
     }
 
     public static function getObj(){
-        return self::$obj;
+        if (isset($_SESSION['object'])){
+			return $_SESSION['object'];
+		}
+		else{
+			header('Location: /');
+		}
     }
+	
+	public static function destroyObj(){
+		session_destroy();
+	}
 }

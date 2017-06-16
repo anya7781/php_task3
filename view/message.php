@@ -1,8 +1,8 @@
-<?php
-	session_start();
-	 $path = "../json/".$_SESSION['login'].".json";
-	 $string = file_get_contents($path);
-     $data = json_decode($string);
+<?php	
+	require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
+	
+	$obj = Auth::getObj();
+
 ?>
 
 <!DOCTYPE html>
@@ -15,28 +15,16 @@
 
 	<body>
 	
-		<?php
-		
-			if (isset($_SESSION['login'])){
-		?>
 			<div align = "center">
-				<p>Здравствуйте, <?php echo $data->role." "; echo $data->login; ?>!</p>
+				<p>Здравствуйте, <?php echo $obj->getRole()." "; echo $obj->getLogin(); ?>!</p>
 				<p>Вы успешно авторизовались!</p>
 				<a href = "/view/profile.php">Просмотреть профиль</a>
 				
-				<?php if ($data->role == "admin") { ?>
+				<?php if ($obj->getRole() == "admin") { ?>
 					<br><br><a href = "/admin/index.php"> Зайти в админ панель </a>	
-				<?php } include("blocks/exit_button.php"); ?>
+				<?php } include($_SERVER['DOCUMENT_ROOT']."/view/blocks/exit_button.php"); ?>
 			</div>
-		<?php
-			}
-		else {
-			echo "Вы ввели неверный логин или пароль";
-		}
-		
-		?>
-	
+			
 	</body>
-
 
 </html>

@@ -1,11 +1,8 @@
 <?php
-	session_start();
-	if (!isset($_SESSION['login']))
-		 header('Location: /');
-	 
-	 $path = "../json/".$_SESSION['login'].".json";
-	 $string = file_get_contents($path);
-	 $data = json_decode($string);
+	require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
+	
+	$obj = Auth::getObj();
+	
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +15,14 @@
 
 	<body>
 		<div align = "center">
-			<p>Логин: <?php  echo $data->login; ?></p>
-			<p>Роль: <?php echo $data->role; ?></p>
-			<p>Имя: <?php echo $data->name; ?></p>
-			<p>Фамилия: <?php echo $data->surname; ?></p>
+			<p>Логин: <?php  echo $obj->getLogin(); ?></p>
+			<p>Роль: <?php echo $obj->getRole(); ?></p>
+			<p>Имя: <?php echo $obj->getName(); ?></p>
+			<p>Фамилия: <?php echo $obj->getSurname(); ?></p>
 			<a href = "edit.php">Редактировать профиль</a>
-			<?php if ($data->role == "admin") { ?>
+			<?php if ($obj->getRole() == "admin") { ?>
 					<br><br><a href = "/admin/index.php"> Зайти в админ панель </a>
-			<?php } include("blocks/exit_button.php"); ?>
+			<?php } include($_SERVER['DOCUMENT_ROOT']."/view/blocks/exit_button.php"); ?>
 		</div>
 	</body>
 

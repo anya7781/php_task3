@@ -1,13 +1,7 @@
 <?php
-
-	session_start();
-	if (!isset($_SESSION['login']))
-		 header('Location: /');
-	 
-	 $path = "../json/".$_SESSION['login'].".json";
-	 $string = file_get_contents($path);
-	 $data = json_decode($string);
-
+	require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
+	
+	$obj = Auth::getObj();
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +16,11 @@
 	
 		<form method = "post" class = "login_form" align = "center" action = "/controller/handler_edit.php">
 			<label>Логин: </label>
-			<p><input type = "text" name = "login" value = "<?php echo $_SESSION['login']; ?>"/></p>
+			<p><input type = "text" name = "login" value = "<?php echo $obj->getLogin(); ?>"/></p>
 			<label>Имя: </label>
-			<p><input type = "text" name = "name" value = "<?php echo $data->name; ?>"/></p>
+			<p><input type = "text" name = "name" value = "<?php echo $obj->getName(); ?>"/></p>
 			<label>Фамилия: </label>
-			<p><input type = "text" name = "surname" value = "<?php echo $data->surname; ?>"/></p>
+			<p><input type = "text" name = "surname" value = "<?php echo $obj->getSurname(); ?>"/></p>
 			
 			<p><input type = "submit" value = "Сохранить"></p>
 			

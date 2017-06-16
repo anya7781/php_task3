@@ -17,7 +17,7 @@
         public function getName(){
             return $this->name;
         }
-            public function getSurname(){
+        public function getSurname(){
            return $this->surname;
         }
         public function getLogin(){
