@@ -24,7 +24,7 @@
 					<br><br><a href = "/admin/index.php"> Зайти в админ панель </a>	
 				<?php } include($_SERVER['DOCUMENT_ROOT']."/view/blocks/exit_button.php"); ?>
 			</div>
-			
+						
 	</body>
 
 </html>

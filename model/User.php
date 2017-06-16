@@ -1,6 +1,10 @@
 <?php
     class User {
         private $name, $surname, $login, $role;
+		
+		public function __toString(){
+			return $this->name;
+		}
 
         public function setName($name){
             $this->name = $name;
