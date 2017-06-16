@@ -11,11 +11,12 @@
 		}
 		
 		public static function setUser ($data, $login){
+			$login = mb_strtolower($login);
 			$path = $_SERVER['DOCUMENT_ROOT']."/json/".$login.".json";
 			file_put_contents($path, json_encode($data));
 			
-			if ($login != $data->login){
-				rename ($path,$_SERVER['DOCUMENT_ROOT']."/json/".$data->login.".json");
+			if ($login != mb_strtolower($data['login'])){
+				rename ($path,$_SERVER['DOCUMENT_ROOT']."/json/".$data['login'].".json");
 			}
 		}
 		

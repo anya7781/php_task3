@@ -10,10 +10,11 @@ if (isset($_POST['login'])){
 	  "role" => $_POST['role'],
 	  "password" => $_POST['password']
 	);
+	
+	Files::setUser($data, $data['login']);
+	$login = $data['login'];
 
-	Files::setUser($data, $data->login);
-
-	header("Location: /admin/profile.php?login=$data->login");
+	header("Location: /admin/profile.php?login=$login");
 		
 }
 else header('Location: /admin/new_user.php');
