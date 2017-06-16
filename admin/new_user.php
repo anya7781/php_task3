@@ -1,10 +1,3 @@
-<?php
-
-	session_start();
-	
-
-?>
-
 <!DOCTYPE html>
 <html lang="rus">
 	<head>
@@ -26,7 +19,7 @@
 			<p><input type = "text" name = "surname" /></p>
 			<label>Роль: </label>
 			
-			<select name="role"> <!--Supplement an id here instead of using 'name'-->
+			<select name="role"> 
 			  <option value="admin">Admin</option> 
 			  <option value="user" selected>User</option>
 			</select>

@@ -1,4 +1,5 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
 
 if (isset($_POST['login'])){
 	
@@ -10,11 +11,9 @@ if (isset($_POST['login'])){
 	  "password" => $_POST['password']
 	);
 
-	$path = "../json/".mb_strtolower($_POST['login']).".json";
-	file_put_contents($path, json_encode($data));
-	
-	$login = $_POST['login'];
-	header("Location: /admin/profile.php?login=$login");
+	Files::setUser($data, $data->login);
+
+	header("Location: /admin/profile.php?login=$data->login");
 		
 }
 else header('Location: /admin/new_user.php');

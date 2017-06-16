@@ -1,9 +1,8 @@
 <?php
+	require $_SERVER['DOCUMENT_ROOT']."/autoload.php";
 	
 	if (isset($_GET['login'])){
-		 $path = "../json/".mb_strtolower($_GET['login']).".json";
-		 $string = file_get_contents($path);
-	     $data = json_decode($string);
+		 $data = Files::getUser($_GET['login']);
 	}
 	else header('Location: /');
 	
@@ -23,7 +22,7 @@
 			<p>Имя: <?php echo $data->name; ?></p>
 			<p>Фамилия: <?php echo $data->surname; ?></p>
 			<a href = "list.php">Список пользователей</a>
-			<?php include("blocks/exit_button.php"); ?>
+			<?php include($_SERVER['DOCUMENT_ROOT']."/view/blocks/exit_button.php"); ?>
 		</div>
 	</body>
 

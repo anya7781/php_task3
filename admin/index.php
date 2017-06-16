@@ -12,7 +12,7 @@
 		
 			<a href = "/admin/list.php"> Список пользователей </a>
 			<br><br><a href = "/admin/new_user.php"> Добавить пользователя </a>
-			<?php include("blocks/exit_button.php"); ?>
+			<?php include($_SERVER['DOCUMENT_ROOT']."/view/blocks/exit_button.php"); ?>
 		
 		</div>
 	
