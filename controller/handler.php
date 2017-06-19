@@ -11,28 +11,26 @@
 				 $login = $_POST['login'];
 				 $password = $_POST['password'];
 									
-				$login = mb_strtolower($login);
+				$data = Files::getUser($login);
 
-				$path = $_SERVER['DOCUMENT_ROOT']."/json/".$login.".json";
-				if (file_exists($path)){
-					$string = file_get_contents($path);
-					$data = json_decode($string);
+				if ($data != null){
 					if ($password == $data->password){
-						$current_user = new User;
-						$current_user->setName($data->name);
-						$current_user->setSurname($data->surname);
-						$current_user->setRole($data->role);
-						$current_user->setLogin($data->login);
-						
-						Auth::setObj($current_user);
-						
-						header('Location: /view/message.php');
+						User::createUser($data);
 					}
 					else echo "Incorrect password";
 				}
-				else  echo "Incorrect login";
+				else {
+					$data = Files::getUserFromArray($login);
+					if ($data != null){
+						if ($password == $data['password']){
+							User::createUser($data);
+						}
+						else echo "Incorrect password";
+					}
+					else echo "Incorrect login";
+				}	
 			} 
-				else  header('Location: /');
+			else  header('Location: /');
 			
  
  

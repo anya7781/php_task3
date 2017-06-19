@@ -1,13 +1,23 @@
 <?php
-	require_once "Auth.php"; 
 	
-	class Files {
+	interface Search {
+		public static function getUser($login);
+		public static function getUserFromArray($login);
+	}
+	
+	
+	class Files implements Search{
 		
 		public static function getUser ($login){
+			$login = mb_strtolower($login);
 			$path = $_SERVER['DOCUMENT_ROOT']."/json/".$login.".json";
-			$string = file_get_contents($path);
-			$data = json_decode($string);
-			return $data;
+			if (file_exists($path)){
+				$string = file_get_contents($path);
+				$data = json_decode($string);
+				return $data;
+			}
+			else return null;
+			
 		}
 		
 		public static function setUser ($data, $login){
@@ -37,6 +47,13 @@
 			}
 			
 			return $all_data;
+		}
+		
+		public static function getUserFromArray($login){
+			include_once $_SERVER['DOCUMENT_ROOT']."/json/users.php"; 
+			
+			$login = mb_strtolower($login);
+			return $users[$login];	
 		}
 		
 	}
